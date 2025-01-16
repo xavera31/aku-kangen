@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajakan Ngopi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #fbc2eb, #a6c1ee);
+            font-family: 'Georgia', serif;
+            color: #333;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #6a0572;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: #4a4e69;
+        }
+        .coffee {
+            font-size: 5rem;
+            color: #d92027;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #6a0572;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #a73ea3;
+            transform: scale(1.05);
+        }
+        input, select {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .response {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div class="coffee">☕</div>
+        <h1>Fer, Ayo Ngopi!</h1>
+        <p>Kenapa kamu susah sekali tuk berjumpa temu?</p>
+        <button onclick="showOptions()">Iya, Ayo Ngopi</button>
+        <div id="response" class="response"></div>
+    </div>
+
+    <script>
+        function showOptions() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h1>Masukkan Jadwal Ngopimu:</h1>
+                <p>Pilih hari dan jam yang cocok untuk ngopi bersama.</p>
+                <input type="date" id="date" placeholder="Pilih Tanggal">
+                <input type="time" id="time" placeholder="Pilih Jam">
+                <br><br>
+                <button onclick="confirmCoffee()">Konfirmasi Ngopi</button>
+                <button onclick="busy()">Sekarang Masih Sibuk, Belum Bisa Ngopi</button>
+            `;
+        }
+
+        function confirmCoffee() {
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            if (date && time) {
+                document.getElementById('response').innerHTML = `
+                    <p>Terima kasih! Kamu sudah memilih ngopi pada: ${date} jam ${time}. Sampai bertemu, ya! ☕</p>
+                `;
+            } else {
+                document.getElementById('response').innerHTML = `
+                    <p>Mohon lengkapi jadwal ngopi untuk melanjutkan.</p>
+                `;
+            }
+        }
+
+        function busy() {
+            document.getElementById('response').innerHTML = `
+                <p>Oke, nggak apa-apa! Semoga kesibukanmu lancar dulu. Ngopi nanti, ya!</p>
+            `;
+        }
+    </script>
+</body>
+</html>
